@@ -1,0 +1,97 @@
+<nav class="navbar navbar-expand-lg menu">
+	<div class="container">
+	  <div class="navbar-nav">
+	  	<a class="menuItem" href="/timeline">
+	  		Home
+	  	</a>
+
+	  	<a class="menuItem" href="/sair">
+	  		Sair
+	  	</a>
+			<img src="/img/twitter_logo.png" class="menuIco" />
+	  </div>
+	</div>
+</nav>
+
+<div class="container mt-5">
+	<div class="row pt-2">
+		
+		<div class="col-md-3">
+
+			<div class="perfil">
+				<div class="perfilTopo">
+
+				</div>
+				<?php require_once('../App/Views/app/perfilPainel.phtml') ?>
+			</div>
+
+		</div>
+
+		<div class="col-md-6">
+			<div class="row mb-2">
+				<div class="col tweetBox">
+					<form method="POST" action = "/tweet">
+						<textarea class="form-control" name="tweet" id="exampleFormControlTextarea1" rows="3"></textarea>
+						
+						<div class="col mt-2 d-flex justify-content-end">
+							<button type="submit" class="btn btn-primary">Tweet</button>
+						</div>
+
+					</form>
+				</div>
+			</div>
+
+			<?php foreach($this->view->tweets as $id => $tweet) { ?>
+				<div class="row tweet">
+					<div class="col">
+						<p><strong><?=$tweet['nome']?></strong> <small class="text text-muted">- <?=$tweet['data']?></small></p>
+						<div id="conteudo_tweet">
+							<p><?=$tweet['tweet']?></p>
+						</div>
+						<br />
+						<?php if($tweet['id_usuario'] == $_SESSION['id']) {?>
+							<div class="col d-flex justify-content-end">
+								<a href="/remover_tweet?id_tweet=<?=$tweet['id']?>" class="btn btn-danger ml-1">
+									<small>Remover</small>
+								</a>
+							</div>
+						<?php } ?>
+					</div>
+				</div>
+			<?php } ?>
+
+			<div class="row mt-5">
+				<nav aria-label="Page navigation example">
+					<ul class="pagination">
+						<li class="page-item">
+							<a class="page-link" href="?pagina=1" aria-label="Previous">
+								<span aria-hidden="true">&laquo;</span>
+							</a>
+						</li>
+						<?php for($i = 1; $i <= $this->view->total_de_paginas; $i+1) { ?>
+							<li class="page-item">
+								<a class="page-link" href="?pagina=<?=$i?>"><?=$i?></a>
+							</li>
+						<?php } ?>
+						<li class="page-item">
+							<a class="page-link" href="?pagina=<?=$this->view->total_de_paginas?>" aria-label="Next">
+								<span aria-hidden="true">&raquo;</span>
+							</a>
+						</li>
+					</ul>
+				</nav>
+			</div>
+
+		</div>
+
+
+		<div class="col-md-3">
+			<div class="quemSeguir">
+				<span class="quemSeguirTitulo">Quem seguir</span><br />
+				<hr />
+				<a href="/quem_seguir" class="quemSeguirTxt">Procurar por pessoas conhecidas</a>
+			</div>
+		</div>
+
+	</div>
+</div>
