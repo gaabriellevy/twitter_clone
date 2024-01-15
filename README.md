@@ -2,7 +2,7 @@
 
 > Status: Developing ⚠️
 
-### It's a web application initialized in a Web Developing curse on Udemy. My goal is to keep adding features to turn it more like twitter and my personal tastes
+### It's a web application that uses PHP language and MVC architecture pattern to work like Twitter Website. My goal is to keep adding features to turn it more like twitter and align with my personal tastes.
 
 ## Features the app does
 + Create account
@@ -18,6 +18,7 @@
 + Save posts
 + Explore section
 + Messages
++ Divide the struture in backend (using REST API) and frontend
 
 ## Technologies Used:
 <table>
